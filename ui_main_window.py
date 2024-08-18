@@ -40,6 +40,11 @@ class Ui_MainWindow(object):
         self.generateCustomPasswordButton = QtWidgets.QPushButton("Generate Customizable Password")
         self.verticalLayout.addWidget(self.generateCustomPasswordButton)
 
+        self.lineX = QtWidgets.QFrame()
+        self.lineX.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.lineX.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.verticalLayout.addWidget(self.lineX)
+
         # Cryptographically Secure Password Generator Section
         self.securePasswordLabel = QtWidgets.QLabel("Cryptographically Secure Password Generator")
         self.verticalLayout.addWidget(self.securePasswordLabel)
@@ -55,11 +60,16 @@ class Ui_MainWindow(object):
         self.generateSecureButton = QtWidgets.QPushButton("Generate Secure Password")
         self.verticalLayout.addWidget(self.generateSecureButton)
 
+        self.lineX = QtWidgets.QFrame()
+        self.lineX.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.lineX.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.verticalLayout.addWidget(self.lineX)
+
         # Passphrase Generator Section (for existing password)
         self.passphraseLabel = QtWidgets.QLabel("Paraphrase Your Existing Password")
         self.verticalLayout.addWidget(self.passphraseLabel)
 
-        self.existingPasswordLabel = QtWidgets.QLabel("Number of Words to Use:")
+        self.existingPasswordLabel = QtWidgets.QLabel("Enter existing password:")
         self.verticalLayout.addWidget(self.existingPasswordLabel)
         self.existingPasswordField = QtWidgets.QLineEdit()
         self.existingPasswordField.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
@@ -67,6 +77,11 @@ class Ui_MainWindow(object):
 
         self.generatePassphraseButton = QtWidgets.QPushButton("Generate Passphrase from Existing Password")
         self.verticalLayout.addWidget(self.generatePassphraseButton)
+
+        self.lineX = QtWidgets.QFrame()
+        self.lineX.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.lineX.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.verticalLayout.addWidget(self.lineX)
 
         # Password Generator with User Input Section
         self.userInputLabel = QtWidgets.QLabel("Password Generator with User Input")
@@ -78,10 +93,6 @@ class Ui_MainWindow(object):
 
         self.generateUserInputButton = QtWidgets.QPushButton("Generate Password from Input")
         self.verticalLayout.addWidget(self.generateUserInputButton)
-
-        # Copy Password Button
-        self.copyPasswordButton = QtWidgets.QPushButton("Copy Password")
-        self.verticalLayout.addWidget(self.copyPasswordButton)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
