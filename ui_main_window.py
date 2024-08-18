@@ -3,7 +3,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(400, 350)
+        MainWindow.resize(400, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.lengthSpinBox = QtWidgets.QSpinBox()
         self.lengthSpinBox.setMinimum(6)
         self.lengthSpinBox.setMaximum(128)
-        self.lengthSpinBox.setValue(12)
+        self.lengthSpinBox.setValue(8)
         self.verticalLayout.addWidget(self.lengthSpinBox)
 
         self.includeUppercase = QtWidgets.QCheckBox("Include Uppercase Letters")
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.secureLengthSpinBox = QtWidgets.QSpinBox()
         self.secureLengthSpinBox.setMinimum(6)
         self.secureLengthSpinBox.setMaximum(128)
-        self.secureLengthSpinBox.setValue(16)
+        self.secureLengthSpinBox.setValue(12)
         self.verticalLayout.addWidget(self.secureLengthSpinBox)
 
         self.generateSecureButton = QtWidgets.QPushButton("Generate Secure Password")
