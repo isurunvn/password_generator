@@ -1,5 +1,7 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow
+import string
+import secrets
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui_main_window import Ui_MainWindow
 
 class MainWindow(QMainWindow):
@@ -9,11 +11,64 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Connect your buttons and other widgets here
-        self.ui.generateButton.clicked.connect(self.generate_password)
+        self.ui.generateCustomPasswordButton.clicked.connect(self.generate_password)
+        self.ui.generateSecureButton.clicked.connect(self.generate_secure_password)
+        self.ui.generatePassphraseButton.clicked.connect(self.generate_passphrase_from_existing_password)
+        self.ui.generateUserInputButton.clicked.connect(self.generate_password_from_input)
 
     def generate_password(self):
-        # Implement your password generation logic here
-        pass
+        length = self.ui.lengthSpinBox.value()
+        characters = ""
+        
+        if self.ui.includeUppercase.isChecked():
+            characters += string.ascii_uppercase
+        if self.ui.includeLowercase.isChecked():
+            characters += string.ascii_lowercase
+        if self.ui.includeDigits.isChecked():
+            characters += string.digits
+        if self.ui.includeSymbols.isChecked():
+            characters += string.punctuation
+
+        if not characters:
+            QMessageBox.warning(self, "Warning", "Please select at least one character type.")
+            return
+
+        password = ''.join(secrets.choice(characters) for _ in range(length))
+        self.show_generated_password(password)
+
+    def generate_secure_password(self):
+        length = self.ui.secureLengthSpinBox.value()
+        characters = string.ascii_letters + string.digits + string.punctuation
+        password = ''.join(secrets.choice(characters) for _ in range(length))
+        self.show_generated_password(password)
+
+    def generate_passphrase_from_existing_password(self):
+        existing_password = self.ui.existingPasswordField.text().strip()
+        if not existing_password:
+            QMessageBox.warning(self, "Warning", "Please enter your current password.")
+            return
+
+        passphrase = self.transform_password(existing_password)
+        self.show_generated_password(passphrase)
+
+    def transform_password(self, password):
+        translation_table = str.maketrans(
+            string.ascii_uppercase[:13] + string.ascii_uppercase[13:] + string.ascii_lowercase[:13] + string.ascii_lowercase[13:] + "01234" + "56789",
+            string.ascii_lowercase[-13:] + string.ascii_lowercase[:13] + string.ascii_lowercase[-13:] + string.ascii_uppercase[:13] + "56789" + "01234"
+        )
+        return password.translate(translation_table)
+
+    def generate_password_from_input(self):
+        user_input = self.ui.userInputField.text().strip()
+        if not user_input:
+            QMessageBox.warning(self, "Warning", "Please enter some text to generate a password.")
+            return
+
+        shuffled_input = ''.join(secrets.choice(user_input) for _ in range(len(user_input)))
+        self.show_generated_password(shuffled_input)
+
+    def show_generated_password(self, password):
+        QMessageBox.information(self, "Generated Password", f"Your generated password: {password}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

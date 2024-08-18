@@ -1,5 +1,3 @@
-# ui_main_window.py
-
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
@@ -39,6 +37,9 @@ class Ui_MainWindow(object):
         self.includeSymbols = QtWidgets.QCheckBox("Include Symbols")
         self.verticalLayout.addWidget(self.includeSymbols)
 
+        self.generateCustomPasswordButton = QtWidgets.QPushButton("Generate Customizable Password")
+        self.verticalLayout.addWidget(self.generateCustomPasswordButton)
+
         # Cryptographically Secure Password Generator Section
         self.securePasswordLabel = QtWidgets.QLabel("Cryptographically Secure Password Generator")
         self.verticalLayout.addWidget(self.securePasswordLabel)
@@ -54,19 +55,17 @@ class Ui_MainWindow(object):
         self.generateSecureButton = QtWidgets.QPushButton("Generate Secure Password")
         self.verticalLayout.addWidget(self.generateSecureButton)
 
-        # Passphrase Generator Section
-        self.passphraseLabel = QtWidgets.QLabel("Passphrase Generator")
+        # Passphrase Generator Section (for existing password)
+        self.passphraseLabel = QtWidgets.QLabel("Paraphrase Your Existing Password")
         self.verticalLayout.addWidget(self.passphraseLabel)
 
-        self.wordCountLabel = QtWidgets.QLabel("Number of Words:")
-        self.verticalLayout.addWidget(self.wordCountLabel)
-        self.wordCountSpinBox = QtWidgets.QSpinBox()
-        self.wordCountSpinBox.setMinimum(3)
-        self.wordCountSpinBox.setMaximum(12)
-        self.wordCountSpinBox.setValue(4)
-        self.verticalLayout.addWidget(self.wordCountSpinBox)
+        self.existingPasswordLabel = QtWidgets.QLabel("Existing password:")
+        self.verticalLayout.addWidget(self.existingPasswordLabel)
+        self.existingPasswordField = QtWidgets.QLineEdit()
+        self.existingPasswordField.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        self.verticalLayout.addWidget(self.existingPasswordField)
 
-        self.generatePassphraseButton = QtWidgets.QPushButton("Generate Passphrase")
+        self.generatePassphraseButton = QtWidgets.QPushButton("Generate Passphrase from Existing Password")
         self.verticalLayout.addWidget(self.generatePassphraseButton)
 
         # Password Generator with User Input Section
@@ -80,10 +79,6 @@ class Ui_MainWindow(object):
         self.generateUserInputButton = QtWidgets.QPushButton("Generate Password from Input")
         self.verticalLayout.addWidget(self.generateUserInputButton)
 
-        # Generate Button
-        self.generateButton = QtWidgets.QPushButton("Generate Password")
-        self.verticalLayout.addWidget(self.generateButton)
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -91,4 +86,3 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Password Generator"))
-
