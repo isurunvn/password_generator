@@ -3,7 +3,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(400, 300)
+        MainWindow.resize(400, 350)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
         self.passphraseLabel = QtWidgets.QLabel("Paraphrase Your Existing Password")
         self.verticalLayout.addWidget(self.passphraseLabel)
 
-        self.existingPasswordLabel = QtWidgets.QLabel("Existing password:")
+        self.existingPasswordLabel = QtWidgets.QLabel("Number of Words to Use:")
         self.verticalLayout.addWidget(self.existingPasswordLabel)
         self.existingPasswordField = QtWidgets.QLineEdit()
         self.existingPasswordField.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
@@ -78,6 +78,10 @@ class Ui_MainWindow(object):
 
         self.generateUserInputButton = QtWidgets.QPushButton("Generate Password from Input")
         self.verticalLayout.addWidget(self.generateUserInputButton)
+
+        # Copy Password Button
+        self.copyPasswordButton = QtWidgets.QPushButton("Copy Password")
+        self.verticalLayout.addWidget(self.copyPasswordButton)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
